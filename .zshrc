@@ -4,13 +4,12 @@
 
 ## --------------- ZSH --------------- ##
 
-COMPUTER="switchblade"
 # Path to your oh-my-zsh installation.
 ZSH=~/.oh-my-zsh/
 # History file
-HISTFILE=${HOME}/Computer/System/${COMPUTER}/oh-my-zsh/zsh_history
+HISTFILE=${HOME}/.config/oh-my-zsh/zsh_history
 # Change custom directory
-ZSH_CUSTOM=${HOME}/Computer/System/${COMPUTER}/oh-my-zsh/custom
+ZSH_CUSTOM=${HOME}/.config/oh-my-zsh/custom
 # Theme
 ZSH_THEME="af-magic"
 # Dont auto update
