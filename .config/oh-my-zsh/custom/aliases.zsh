@@ -2,9 +2,9 @@
 
 # root commands
 alias suno='sudo nano'
-alias smi='sudo micro'
+alias sni='sudo micro'
 
-alias mi='sudo micro'
+alias s='sudo'
 
 alias screenshot="import -window root ~/Pictures/$(date '+%Y%m%d-%H%M%S').png"
 
