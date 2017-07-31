@@ -1,8 +1,8 @@
-#########################################
-## -------- ZSH Configuration -------- ##
-#########################################
+######################################################
+## --------------- ZSH Configuration -------------- ##
+######################################################
 
-## --------------- ZSH --------------- ##
+## ---------------------- ZSH --------------------- ##
 
 # Path to your oh-my-zsh installation.
 ZSH=~/.oh-my-zsh/
@@ -21,19 +21,24 @@ plugins=(git archlinux systemd history sudo zsh-autosuggestions zfs-snap-pacman)
 
 source $ZSH/oh-my-zsh.sh
 
-## -------------- System ------------- ##
+## -------------------- System -------------------- ##
 
 
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/john/.local/bin:/usr/bin/core_perl"
 export PATH
 export MANPATH="/usr/local/man:$MANPATH"
 
-## -------- User Configuration -------- ##
+## ------------------- Languages ------------------- ##
+
+# Dont install software system-wide
+export GEM_HOME=$(ruby -e 'print Gem.user_dir')
+PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+
+export npm_config_prefix=~/.node_modules
+PATH="$HOME/.node_modules/bin:$PATH"
+
+## --------------------- MISC ---------------------- ##
 
 export GPG_TTY=$(tty)
 # Preferred editor
 export EDITOR='nano'
-
-## -------------- Software ------------- ##
-
-## ----------- Other Options ----------- ##
