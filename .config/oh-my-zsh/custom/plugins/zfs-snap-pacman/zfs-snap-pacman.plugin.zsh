@@ -1,4 +1,4 @@
-datasets=('vault/ROOT/default' 'vault/usr' 'vault/var' 'shard/home')
+datasets=('vault/sys/chin/ROOT/default')
 
 iterate-snaps(){
   for dataset in ${datasets}; do
