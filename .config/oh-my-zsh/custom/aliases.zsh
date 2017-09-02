@@ -2,7 +2,6 @@
 
 # root commands
 alias suno='sudo nano'
-alias sni='sudo micro'
 
 alias s='sudo'
 
@@ -18,7 +17,7 @@ alias screenshot="import -window root ~/Pictures/$(date '+%Y%m%d-%H%M%S').png"
 alias timersd='systemctl list-timers | less'
 
 # Misc
-alias efstab='sudo micro /etc/fstab'
+alias efstab='sudo nano /etc/fstab'
 
 # tar
 # Uncompressed tar archive: $ tar -cvf archive_name.tar dirname/
@@ -46,3 +45,13 @@ alias paced="sudo micro /etc/pacman.conf"
 
 # Dotfile management
 alias config='/usr/bin/git --git-dir=$HOME/.config/dotfiles/ --work-tree=$HOME'
+
+systemd_commands=(
+  start stop reload restart try-restart isolate kill
+  reset-failed enable disable reenable preset mask unmask
+  link load cancel set-environment unset-environment
+  edit)
+
+for c in $systemd_commands; do; alias scu-$c="systemctl $c"; done
+
+alias scu-enable-now="scu-enable --now"
