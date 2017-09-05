@@ -14,8 +14,8 @@ ZSH_CUSTOM=${HOME}/.config/oh-my-zsh/custom
 ZSH_THEME="af-magic"
 # Dont auto update
 DISABLE_AUTO_UPDATE=true
-# Start ssh-add on boot
-export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+# Start ssh-add on boot, add here or to ~/.pam_environment, pam is preferred
+#export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 # Load plugins
 plugins=(git archlinux systemd history sudo zsh-autosuggestions zfs-snap-pacman)
 
