@@ -17,7 +17,7 @@ DISABLE_AUTO_UPDATE=true
 # Start ssh-add on boot, add here or to ~/.pam_environment, pam is preferred
 #export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 # Load plugins
-plugins=(git archlinux systemd history sudo zsh-autosuggestions zfs-snap-pacman)
+plugins=(git archlinux systemd history sudo zsh-autosuggestions zfs-snap-pacman vcsh)
 
 source ${ZSH}/oh-my-zsh.sh
 
