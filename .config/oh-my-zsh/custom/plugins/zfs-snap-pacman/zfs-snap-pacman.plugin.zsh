@@ -1,4 +1,6 @@
-datasets=('vault/sys/chin/ROOT/default')
+source ${0:A:h}/zfs-snap-pacman-datasets.zsh
+
+datasets=${ZFS_PAC_SNAP_DATASETS}
 
 iterate-snaps(){
   for dataset in ${datasets}; do

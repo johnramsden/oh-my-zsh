@@ -19,6 +19,9 @@ DISABLE_AUTO_UPDATE=true
 # Load plugins
 plugins=(git archlinux systemd history sudo zsh-autosuggestions zfs-snap-pacman vcsh)
 
+# Set zfs datasets to snapshot in ${ZSH_CUSTOM}/plugins/zfs-snap-pacman/zfs-snap-pacman-datasets.zsh
+# with ZFS_PAC_SNAP_DATASETS=(list of datasets...)
+
 source ${ZSH}/oh-my-zsh.sh
 
 ## -------------------- System -------------------- ##
