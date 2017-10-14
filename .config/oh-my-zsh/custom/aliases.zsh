@@ -5,6 +5,8 @@ alias suno='sudo nano'
 
 alias s='sudo'
 
+alias mi='micro'
+
 alias screenshot="import -window root ~/Pictures/$(date '+%Y%m%d-%H%M%S').png"
 
 # Set grub to reboot to windows, update and reboot
@@ -41,10 +43,7 @@ alias unitlist="systemctl list-units --type service --state active"
 
 # Pacman.conf
 
-alias paced="sudo micro /etc/pacman.conf"
-
-# Dotfile management
-alias config='/usr/bin/git --git-dir=$HOME/.config/dotfiles/ --work-tree=$HOME'
+alias paced="sudo nano /etc/pacman.conf"
 
 systemd_commands=(
   start stop reload restart try-restart isolate kill
@@ -52,6 +51,6 @@ systemd_commands=(
   link load cancel set-environment unset-environment
   edit)
 
-for c in $systemd_commands; do; alias scu-$c="systemctl $c"; done
+for c in $systemd_commands; do; alias scu-$c="systemctl --user $c"; done
 
 alias scu-enable-now="scu-enable --now"

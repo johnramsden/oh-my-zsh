@@ -37,7 +37,11 @@ PATH="${HOME}/.node_modules/bin:${PATH}"
 
 ## --------------------- MISC ---------------------- ##
 
+# Prevent wine file associations
+export WINEDLLOVERRIDES="winemenubuilder.exe=d"
+
 export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DOCUMENTS_DIR="${HOME}/University/Documents"
 export GPG_TTY=$(tty)
 # Preferred editor
 export EDITOR='nano'
