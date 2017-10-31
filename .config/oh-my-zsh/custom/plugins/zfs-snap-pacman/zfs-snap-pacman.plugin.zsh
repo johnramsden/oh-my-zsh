@@ -2,11 +2,32 @@ source ${0:A:h}/zfs-snap-pacman-datasets.zsh
 
 datasets=${ZFS_PAC_SNAP_DATASETS}
 
-iterate-snaps(){
+iterate_snaps(){
+  command="${1}"
+  snap_name="${2}"
+
   for dataset in ${datasets}; do
-    echo "Taking snapshot: ${dataset}@${1}"
-    sudo zfs snapshot "${dataset}@${1}"
+
+    if [ ${command} = "create" ]; then
+      echo "Taking snapshot: ${dataset}@${snap_name}"
+      sudo zfs snapshot "${dataset}@${snap_name}"
+      snap_success=${?}
+    elif [ ${command} = "destroy" ]; then
+      echo "Destroying snapshot: ${dataset}@${snap_name}"
+      sudo zfs destroy "${dataset}@${snap_name}"
+      snap_success=${?}
+    else
+      echo "No such command ""'""${command}""'"
+      return 2
+    fi
+
+    if [ ${snap_success} -ne 0 ]; then
+      echo "Failed to ${command} snapshot ${dataset}@${snap_name}"
+      return 1
+    fi
   done
+
+  return 0
 }
 
 # ZFS Snapshot before command
@@ -15,33 +36,68 @@ zupg(){
   snap_date="$(date +%Y-%m-%d-%H%M%S)"
   echo "Updating system..."
 
-  iterate-snaps "pre-update-${snap_date}"
+  iterate_snaps "create" "pre-update-${snap_date}"
+  iterate_snaps_success=${?}
+  if [ ${iterate_snaps_success} -ne 0 ]; then
+    echo "Failed to iterate over datasets during pre-update"
+    return 1
+  fi
 
   echo "Starting update..."
   pacaur -Syu
+  update_success=${?}
+  if [ ${update_success} -ne 0 ]; then
+    echo "Failed to run aur update with ""'""pacaur -Syu""'"
+    return 2
+  fi
 
-  iterate-snaps "post-update-${snap_date}"
+  iterate_snaps "create" "post-update-${snap_date}"
+  iterate_snaps_success=${?}
+  if [ ${iterate_snaps_success} -ne 0 ]; then
+    echo "Failed to iterate over datasets during post-update"
+    return 3
+  fi
+
+  return 0
 }
 
 zin(){
   packages=""
   snap_date="$(date +%Y-%m-%d-%H%M%S)"
-  for var in $@;
-    do
+  for var in $@; do
       packages="${packages}-${var}";
   done
   echo "Pre-install..."
 
-  iterate-snaps "pre-install${packages}-${snap_date}"
+  iterate_snaps "create" "pre-install${packages}-${snap_date}"
+  iterate_snaps_success=${?}
+  if [ ${iterate_snaps_success} -ne 0 ]; then
+    echo "Failed to iterate over datasets during pre-install"
+    return 1
+  fi
 
   echo
   echo "Installing packages: ${@}..."
   sudo pacman -S ${@}
+  install_success=${?}
+
   echo
+
+  if [ ${install_success} -ne 0 ]; then
+    echo "Failed to run install with ""'""pacman -S ${@}""'"
+    return 2
+  fi
 
   echo "Post-install..."
 
-  iterate-snaps "post-install${packages}-${snap_date}"
+  iterate_snaps "create" "post-install${packages}-${snap_date}"
+  iterate_snaps_success=${?}
+  if [ ${iterate_snaps_success} -ne 0 ]; then
+    echo "Failed to iterate over datasets during post-install"
+    return 3
+  fi
+
+  return 0
 }
 
 zain(){
@@ -53,14 +109,33 @@ zain(){
   done
   echo "Pre-install..."
 
-  iterate-snaps "pre-install${packages}-${snap_date}"
+  iterate_snaps "create" "pre-install${packages}-${snap_date}"
+  iterate_snaps_success=${?}
+  if [ ${iterate_snaps_success} -ne 0 ]; then
+    echo "Failed to iterate over datasets during pre-install"
+    return 1
+  fi
 
   echo
   echo "Installing packages: ${@}..."
   pacaur -S ${@}
+  install_success=${?}
+
   echo
+
+  if [ ${install_success} -ne 0 ]; then
+    echo "Failed to run install with ""'""pacaur -S ${@}""'"
+    return 2
+  fi
 
   echo "Post-install..."
 
-  iterate-snaps "post-install${packages}-${snap_date}"
+  iterate_snaps "create" "post-install${packages}-${snap_date}"
+  iterate_snaps_success=${?}
+  if [ ${iterate_snaps_success} -ne 0 ]; then
+    echo "Failed to iterate over datasets during post-install"
+    return 3
+  fi
+
+  return 0
 }
