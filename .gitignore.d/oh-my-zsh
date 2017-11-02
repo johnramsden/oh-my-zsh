@@ -18,7 +18,6 @@
 !/.config/oh-my-zsh/custom/themes
 !/.config/oh-my-zsh/custom/themes/af-magic.zsh-theme
 !/.config/oh-my-zsh/custom/zsh-autosuggestions.zsh
-!/.config/oh-my-zsh/zsh_history
 !/.gitignore.d
 !/.gitignore.d/oh-my-zsh
 !/.zlogin
