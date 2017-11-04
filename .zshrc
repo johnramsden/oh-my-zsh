@@ -9,19 +9,30 @@ USER_ZSH_ROOT=${HOME}/.config/oh-my-zsh
 
 # Path to your oh-my-zsh installation.
 ZSH=/usr/share/oh-my-zsh/
+
 # History
 HISTFILE=${USER_ZSH_ROOT}/zsh_history
+HIST_STAMPS="yyyy-mm-dd"
+HISTSIZE=100000
+SAVEHIST=100000
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+
 # Change custom directory
 ZSH_CUSTOM=${USER_ZSH_ROOT}/custom
 # Theme
 ZSH_THEME="af-magic"
-# Dont auto update
+# Dont auto update oh-my-zsh
 DISABLE_AUTO_UPDATE=true
+
 # Start ssh-add on boot, add here or to ~/.pam_environment, pam is preferred
 #export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
 # Load plugins
-plugins=(git archlinux systemd history sudo zsh-autosuggestions zfs-snap-pacman vcsh history-sync)
+plugins=(git archlinux systemd history sudo zsh-autosuggestions zfs-snap-pacman vcsh histsync)
 
 # Set zfs datasets to snapshot in ${ZSH_CUSTOM}/plugins/zfs-snap-pacman/zfs-snap-pacman-datasets.zsh
 # with ZFS_PAC_SNAP_DATASETS=(list of datasets...)
@@ -56,11 +67,3 @@ export EDITOR='nano'
 export ELECTRON_TRASH=kioclient5
 
 export PATH
-
-## ------------------- PLUGINS --------------------- ##
-
-# GPG Encrypted history sync settings
-export ZSH_HISTORY_FILE=${HISTFILE}
-export ZSH_HISTORY_PROJ=${USER_ZSH_ROOT}/zsh-encrypted-history
-export ZSH_HISTORY_FILE_ENC=${ZSH_HISTORY_PROJ}/zsh_history
-export GIT_COMMIT_MSG="History update from $(hostname) - $(date)"
