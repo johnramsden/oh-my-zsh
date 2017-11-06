@@ -32,14 +32,14 @@ DISABLE_AUTO_UPDATE=true
 #export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
 # Load plugins
-plugins=(git archlinux systemd history sudo zsh-autosuggestions zfs-snap-pacman vcsh histsync)
+plugins=(git archlinux systemd history sudo zsh-autosuggestions zfs-snap-pacman vcsh histsync you-should-use)
 
 # Set zfs datasets to snapshot in ${ZSH_CUSTOM}/plugins/zfs-snap-pacman/zfs-snap-pacman-datasets.zsh
 # with ZFS_PAC_SNAP_DATASETS=(list of datasets...)
 
 source ${ZSH}/oh-my-zsh.sh
 
-## -------------------- System -------------------- ##
+## -------------------- SYSTEM -------------------- ##
 
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:${HOME}/.local/bin:/usr/bin/core_perl"
 export MANPATH="/usr/local/man:${MANPATH}"
@@ -67,3 +67,7 @@ export EDITOR='nano'
 export ELECTRON_TRASH=kioclient5
 
 export PATH
+
+## -------------------- PLUGINS --------------------- ##
+
+export YSU_MODE=ALL
