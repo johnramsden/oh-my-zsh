@@ -35,7 +35,8 @@ alias gxtar='tar -xvfz'
 # Extracting a bzipped tar archive ( *.tar.bz2 ) using option xvjf: $ tar xvfj archive_name.tar.bz2
 alias bxtar='tar -xvfj'
 
-alias sshscan="sudo nmap -p 22 --open -sV  192.168.0.0/24"
+# Takes ip/24 as argument
+alias sshscan="sudo nmap -p 22 --open -sV"
 
 alias startvncserv="systemctl --user start vncserver@:1"
 
