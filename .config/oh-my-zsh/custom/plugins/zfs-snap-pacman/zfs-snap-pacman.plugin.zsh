@@ -44,10 +44,10 @@ zupg(){
   fi
 
   echo "Starting update..."
-  pacaur -Syu
+  sudo pacman -Syu
   update_success=${?}
   if [ ${update_success} -ne 0 ]; then
-    echo "Failed to run aur update with ""'""pacaur -Syu""'"
+    echo "Failed to run aur update with ""'""pacman -Syu""'"
     return 2
   fi
 
