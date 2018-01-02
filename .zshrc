@@ -8,7 +8,7 @@ USER_ZSH_ROOT=${HOME}/.config/oh-my-zsh
 ## ---------------------- ZSH --------------------- ##
 
 # Path to your oh-my-zsh installation.
-ZSH=/usr/share/oh-my-zsh/
+ZSH=${HOME}/.local/share/oh-my-zsh/
 
 # History
 HISTFILE=${USER_ZSH_ROOT}/zsh_history
