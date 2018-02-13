@@ -32,6 +32,37 @@ iterate_snaps(){
 
 # ZFS Snapshot before command
 # Update with pre and post snapshot
+zapg(){
+  snap_date="$(date +%Y-%m-%d-%H%M%S)"
+  echo "Updating system..."
+
+  iterate_snaps "create" "pre-update-${snap_date}"
+  iterate_snaps_success=${?}
+  if [ ${iterate_snaps_success} -ne 0 ]; then
+    echo "Failed to iterate over datasets during pre-update"
+    return 1
+  fi
+
+  echo "Starting update..."
+  pacaur -Syu
+  update_success=${?}
+  if [ ${update_success} -ne 0 ]; then
+    echo "Failed to run aur update with ""'""pacman -Syu""'"
+    return 2
+  fi
+
+  iterate_snaps "create" "post-update-${snap_date}"
+  iterate_snaps_success=${?}
+  if [ ${iterate_snaps_success} -ne 0 ]; then
+    echo "Failed to iterate over datasets during post-update"
+    return 3
+  fi
+
+  return 0
+}
+
+# ZFS Snapshot before command
+# Update with pre and post snapshot
 zupg(){
   snap_date="$(date +%Y-%m-%d-%H%M%S)"
   echo "Updating system..."
