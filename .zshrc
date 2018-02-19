@@ -32,7 +32,7 @@ DISABLE_AUTO_UPDATE=true
 #export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 
 # Load plugins
-plugins=(git archlinux systemd history sudo zsh-autosuggestions zfs-snap-pacman vcsh histsync you-should-use)
+plugins=(git archlinux systemd history sudo zsh-autosuggestions zsnapac vcsh histsync you-should-use)
 
 # Set zfs datasets to snapshot in ${ZSH_CUSTOM}/plugins/zfs-snap-pacman/zfs-snap-pacman-datasets.zsh
 # with ZFS_PAC_SNAP_DATASETS=(list of datasets...)
