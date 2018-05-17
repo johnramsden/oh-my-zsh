@@ -2,7 +2,10 @@
 ## --------------- ZSH Configuration -------------- ##
 ######################################################
 
-# Custom Variables
+## --------------- Custom Variables --------------- ##
+
+#sleep 0.25
+
 USER_ZSH_ROOT=${HOME}/.config/oh-my-zsh
 
 ## ---------------------- ZSH --------------------- ##
@@ -53,6 +56,10 @@ PATH="$(ruby -e 'print Gem.user_dir')/bin:${PATH}"
 export npm_config_prefix=${HOME}/.node_modules
 PATH="${HOME}/.node_modules/bin:${PATH}"
 
+export PIPENV_VENV_IN_PROJECT=true
+#eval "$(pipenv --completion)"
+
+
 ## --------------------- MISC ---------------------- ##
 
 # Prevent wine file associations
@@ -61,7 +68,6 @@ export WINEDLLOVERRIDES="winemenubuilder.exe=d"
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_DOCUMENTS_DIR="${HOME}/University/Documents"
 export GPG_TTY=$(tty)
-# Preferred editor
 export EDITOR='nano'
 # Use KDE's kioclient for electron's trash.
 export ELECTRON_TRASH=kioclient5

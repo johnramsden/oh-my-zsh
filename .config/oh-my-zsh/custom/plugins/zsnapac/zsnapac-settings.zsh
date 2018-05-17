@@ -1,5 +1,7 @@
+#!/bin/sh
+
 # Add datasets to snapshot
-ZFS_PAC_SNAP_DATASETS=( "vault/sys/$(hostname)/ROOT/default"
+ZFS_PAC_SNAP_DATASETS=( "$(mount | awk '/ \/ / {print $1}')"
                         "vault/sys/$(hostname)/var/cache"
                         "vault/sys/$(hostname)/var/cache/pacman"
                         "vault/sys/$(hostname)/var/cache/pacman/custom")
