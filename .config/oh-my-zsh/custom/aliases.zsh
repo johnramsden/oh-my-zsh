@@ -52,6 +52,20 @@ systemd_commands=(
   link load cancel set-environment unset-environment
   edit)
 
-for c in $systemd_commands; do; alias scu-$c="systemctl --user $c"; done
+for c in $systemd_commands; do alias scu-$c="systemctl --user $c"; done
 
 alias scu-enable-now="scu-enable --now"
+
+function upall() {
+  if [[ $(checkupdates) ]]; then
+    if zsnapac update; then
+      if [[ $(aurcheck -d custom) ]]; then
+        echo "Upgrading aur packages" && zsnapac aur && sudo pacman -Syy && zsnapac update
+      else
+        echo "No AUR updates"
+      fi
+    fi
+  else
+    echo "No updates"
+  fi
+}
