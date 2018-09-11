@@ -58,14 +58,18 @@ alias scu-enable-now="scu-enable --now"
 
 function upall() {
   if [[ $(checkupdates) ]]; then
-    if zsnapac update; then
-      if [[ $(aurcheck -d custom) ]]; then
-        echo "Upgrading aur packages" && zsnapac aur && sudo pacman -Syy && zsnapac update
-      else
-        echo "No AUR updates"
-      fi
+    if ! zsnapac update; then
+      echo "Update failed"
+      exit 1
     fi
   else
-    echo "No updates"
+    echo "No system updates"
+  fi
+
+  if [[ $(aurcheck -d custom) ]]; then
+    echo "Upgrading aur packages"
+    zsnapac aur && sudo pacman -Syy && zsnapac update
+  else
+    echo "No AUR updates"
   fi
 }
