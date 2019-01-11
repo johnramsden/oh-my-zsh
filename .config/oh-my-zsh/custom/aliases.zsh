@@ -58,7 +58,7 @@ function upall() {
     echo "No system updates"
   fi
 
-  if [[ $(aur repo --list) ]]; then
+  if [[ $(aur repo --upgrades) ]]; then
     echo "Upgrading aur packages"
     zsnapac aur && sudo pacman -Syy && zsnapac update
   else
