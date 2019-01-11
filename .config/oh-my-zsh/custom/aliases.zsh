@@ -1,3 +1,5 @@
+#!/usr/bin/zsh
+
 # Custom aliases
 
 # root commands
@@ -66,7 +68,7 @@ function upall() {
     echo "No system updates"
   fi
 
-  if [[ $(aurcheck -d custom) ]]; then
+  if [[ $(aur repo --list) ]]; then
     echo "Upgrading aur packages"
     zsnapac aur && sudo pacman -Syy && zsnapac update
   else
