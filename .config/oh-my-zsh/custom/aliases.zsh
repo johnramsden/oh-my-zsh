@@ -1,24 +1,15 @@
 #!/usr/bin/zsh
 
-# Custom aliases
+## Custom aliases ##
+####################
 
 # root commands
 alias suno='sudo nano'
 
 alias s='sudo'
 
-alias mi='micro'
-
 alias screenshot="import -window root ~/Pictures/$(date '+%Y%m%d-%H%M%S').png"
-
-# Set grub to reboot to windows, update and reboot
-#alias nextboot='sudo replaceboot'
-
-# Boot windows
-#alias winboot='nextboot hector && reboot'
-
-# System
-alias timersd='systemctl list-timers | less'
+alias gitall="git remote | xargs -L1 git push --all"
 
 # Misc
 alias efstab='sudo nano /etc/fstab'
@@ -40,23 +31,22 @@ alias bxtar='tar -xvfj'
 # Takes ip/24 as argument
 alias sshscan="sudo nmap -p 22 --open -sV"
 
+## systemd ##
+
+alias timersd='systemctl list-timers | less'
 alias startvncserv="systemctl --user start vncserver@:1"
-
 alias unitlist="systemctl list-units --type service --state active"
-
-# Pacman.conf
-
-alias paced="sudo nano /etc/pacman.conf"
+alias scu-enable-now="scu-enable --now"
 
 systemd_commands=(
   start stop reload restart try-restart isolate kill
   reset-failed enable disable reenable preset mask unmask
-  link load cancel set-environment unset-environment
-  edit)
-
+  link load cancel set-environment unset-environment edit)
 for c in $systemd_commands; do alias scu-$c="systemctl --user $c"; done
 
-alias scu-enable-now="scu-enable --now"
+## packages ##
+
+alias paced="sudo nano /etc/pacman.conf"
 
 function upall() {
   if [[ $(checkupdates) ]]; then

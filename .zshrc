@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 ######################################################
 ## --------------- ZSH Configuration -------------- ##
 ######################################################
@@ -54,13 +56,7 @@ PATH="$(ruby -e 'print Gem.user_dir')/bin:${PATH}"
 export npm_config_prefix=${HOME}/.node_modules
 PATH="${HOME}/.node_modules/bin:${PATH}"
 
-export PIPENV_VENV_IN_PROJECT=true
-#eval "$(pipenv --completion)"
-export PYENV_ROOT="${HOME}/.pyenv"
-PATH="${PYENV_ROOT}/bin:${PATH}"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
+PATH="/usr/lib/ccache/bin/:${PATH}"
 
 
 ## --------------------- MISC ---------------------- ##
