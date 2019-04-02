@@ -56,3 +56,7 @@ function upall() {
 
 # Find largest files:
 # alias paced="
+
+function delsshhost() {
+    sed -i.bak -e "${1}d" "${HOME}/.ssh/known_hosts"
+}
