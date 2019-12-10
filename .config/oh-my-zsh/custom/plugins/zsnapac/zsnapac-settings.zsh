@@ -10,6 +10,8 @@ ZFS_PAC_SNAP_DATASETS=( "$(mount | awk '/ \/ / {print $1}')"
 ZFS_AUR_UPDATE(){
     echo "Building packages with aursync: ${@:1}"
 
+    sudo pacman --noconfirm --root=/var/lib/aurbuild/x86_64/root -Syu
+
     aur sync --upgrades --chroot --temp --makepkg-conf="/etc/makepkg.conf" ${@:1}
 
     #pacaur -Syu ${@:1}

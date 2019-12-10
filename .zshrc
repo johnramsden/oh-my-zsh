@@ -41,6 +41,8 @@ plugins=(git archlinux systemd history sudo zsh-autosuggestions zsnapac vcsh his
 # with ZFS_PAC_SNAP_DATASETS=(list of datasets...)
 
 source ${ZSH}/oh-my-zsh.sh
+#source /etc/profile.d/nix.sh
+#export NIXPKGS=~/Workspace/other/nixos/nixpkgs
 
 ## -------------------- SYSTEM -------------------- ##
 
