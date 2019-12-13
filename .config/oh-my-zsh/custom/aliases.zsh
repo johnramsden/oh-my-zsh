@@ -8,7 +8,6 @@ alias suno='sudo nano'
 
 alias s='sudo'
 
-alias screenshot="import -window root ~/Pictures/$(date '+%Y%m%d-%H%M%S').png"
 alias gitall="git remote | xargs -L1 git push --all"
 
 # Misc
@@ -32,25 +31,7 @@ for c in $systemd_commands; do alias scu-$c="systemctl --user $c"; done
 
 ## packages ##
 
-alias paced="sudo nano /etc/pacman.conf"
-
-function upall() {
-  if [[ $(checkupdates) ]]; then
-    if ! zsnapac update; then
-      echo "Update failed"
-      return 1
-    fi
-  else
-    echo "No system updates"
-  fi
-
-  if [[ $(aur repo --upgrades) ]]; then
-    echo "Upgrading aur packages"
-    zsnapac aur && sudo pacman -Syy && zsnapac update
-  else
-    echo "No AUR updates"
-  fi
-}
+alias upall="sudo apt update && sudo apt upgrade && sudo apt autoremove"
 
 ## Common taks ##
 

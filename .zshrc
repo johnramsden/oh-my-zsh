@@ -31,50 +31,25 @@ ZSH_THEME="af-magic"
 # Dont auto update oh-my-zsh
 DISABLE_AUTO_UPDATE=true
 
-# Start ssh-add on boot, add here or to ~/.pam_environment, pam is preferred
-#export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
-
 # Load plugins
-plugins=(git archlinux systemd history sudo zsh-autosuggestions zsnapac vcsh histsync you-should-use)
-
-# Set zfs datasets to snapshot in ${ZSH_CUSTOM}/plugins/zfs-snap-pacman/zfs-snap-pacman-datasets.zsh
-# with ZFS_PAC_SNAP_DATASETS=(list of datasets...)
+plugins=(git ubuntu systemd history sudo zsh-autosuggestions you-should-use)
 
 source ${ZSH}/oh-my-zsh.sh
-#source /etc/profile.d/nix.sh
-#export NIXPKGS=~/Workspace/other/nixos/nixpkgs
 
 ## -------------------- SYSTEM -------------------- ##
 
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:${HOME}/.local/bin:/usr/bin/core_perl"
 export MANPATH="/usr/local/man:${MANPATH}"
 
-## ------------------- LANGUAGES ------------------- ##
-
-# Dont install software system-wide
-export GEM_HOME=$(ruby -e 'print Gem.user_dir')
-PATH="$(ruby -e 'print Gem.user_dir')/bin:${PATH}"
-
-export npm_config_prefix=${HOME}/.node_modules
-PATH="${HOME}/.node_modules/bin:${PATH}"
-
-PATH="/usr/lib/ccache/bin/:${PATH}"
-
-
 ## --------------------- MISC ---------------------- ##
 
-# Prevent wine file associations
-export WINEDLLOVERRIDES="winemenubuilder.exe=d"
-
 export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_DOCUMENTS_DIR="${HOME}/University/Documents"
 export GPG_TTY=$(tty)
 export EDITOR='nano'
-# Use KDE's kioclient for electron's trash.
-export ELECTRON_TRASH=kioclient5
 
 export PATH
 
 ## -------------------- PLUGINS --------------------- ##
 
 export YSU_MODE=ALL
+
