@@ -36,7 +36,7 @@ alias paced="sudo nano /etc/pacman.conf"
 
 function upall() {
   if [[ $(checkupdates) ]]; then
-    if ! zsnapac update; then
+    if ! sudo pacman -Syu; then
       echo "Update failed"
       return 1
     fi
@@ -46,7 +46,12 @@ function upall() {
 
   if [[ $(aur repo --upgrades) ]]; then
     echo "Upgrading aur packages"
-    zsnapac aur && sudo pacman -Syy && zsnapac update
+    sudo pacman --noconfirm --root=/var/lib/aurbuild/x86_64/root -Syu
+
+    aur sync --upgrades --chroot --temp --makepkg-conf="/etc/makepkg.conf" && \
+    sudo pacman -Syy && \
+    aur sync --upgrades --chroot --temp --makepkg-conf="/etc/makepkg.conf" && \
+    sudo pacman -Syu
   else
     echo "No AUR updates"
   fi
