@@ -46,7 +46,7 @@ function upall() {
 
   if [[ $(aur repo --upgrades) ]]; then
     echo "Upgrading aur packages"
-    sudo pacman --noconfirm --root=/var/lib/aurbuild/x86_64/root -Syu
+    aur chroot --update -D /var/lib/aurbuild/x86_64
 
     aur sync --upgrades --chroot --temp --makepkg-conf="/etc/makepkg.conf" && \
     sudo pacman -Syy && \
